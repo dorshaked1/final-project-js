@@ -6,14 +6,33 @@
     <title>Document</title>
 <link rel="stylesheet" href="../styles/style.css"><body>
     <header>
-      <nav class="navbar">
-        <div class="logo">navbar</div>
-        <ul class="nav-links">
-          <li><a href="#about">email-editor</a></li>
-          <li><a href="#projects">dashboard</a></li>
-          <li><a href="#contact">landing-editor</a></li>
-        </ul>
-      </nav>
+   <nav class="navbar">
+      <div class="logo">📊 Campaign Manager</div>
+      <ul class="nav-links">
+        <li><a href="dashboard.html">Dashboard</a></li>
+        <li><a href="banner-editor.html">Banner Editor</a></li>
+        <li><a href="email.editor.html">Email Editor</a></li>
+        <li><a href="landing-editor.html">Landing Page Editor</a></li>
+      </ul>
+    </nav>
     </header>
+    <main class="main-content">
+    <section class="welcome">
+      <h1>Welcome to the Campaign Dashboard</h1>
+      <p>Here you can manage your banners, emails, and landing pages.</p>
+    </section>
+
+    <section class="campaign-preview">
+      <h2>Current Campaign</h2>
+      <div id="campaign-info">
+        <p>No active campaign found.</p>
+        <button id="create-campaign">Create New Campaign</button>
+      </div>
+      <button id="add-campaign">➕ Add New Campaign</button>
+
+    </section>
+  </main>
+
+  <script src="../scripts/dashboard.js"></script>
 </body>
 </html>
