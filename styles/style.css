@@ -162,6 +162,34 @@ nav, header, footer {
   margin-bottom: 10px;
   color: #007bff;
 }
+
+/*עיצוב לססטוס קמפיין מוצג */
+.status {
+  font-weight: bold;
+  padding: 4px 8px;
+  border-radius: 5px;
+  display: inline-block;
+}
+
+.status-draft {
+  background-color: #f0f0f0;
+  color: #555;
+}
+
+.status-active {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.status-expired {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+/*סיום  טווח עיצוב לססטוס קמפיין */
+
+
+
 /*סיום טווח לכרטיסי קמפיין */
 
 

@@ -12,14 +12,20 @@ document.addEventListener("DOMContentLoaded", function () {
     campaignInfoDiv.innerHTML = "<h2>All Campaigns:</h2>";
     campaigns.forEach((c) => {
       campaignInfoDiv.innerHTML += `
-        <div class="campaign-card">
-          <h3>${c.name}</h3>
-          <p><strong>Type:</strong> ${c.type}</p>
-          <p><strong>Date:</strong> ${c.date}</p>
-          <p><strong>Status:</strong> ${c.status}</p>
-        </div>
-      `;
-    });
+  <div class="campaign-card">
+    <h3>${c.name}</h3>
+    <p><strong>Type:</strong> ${c.type}</p>
+    <p><strong>Date:</strong> ${c.date}</p>
+    <label for="status-${index}"><strong>Status:</strong></label>
+    <select id="status-${index}" data-index="${index}" class="status-select">
+      <option value="Draft" ${c.status === 'Draft' ? 'selected' : ''}>Draft</option>
+      <option value="Active" ${c.status === 'Active' ? 'selected' : ''}>Active</option>
+      <option value="Expired" ${c.status === 'Expired' ? 'selected' : ''}>Expired</option>
+    </select>
+  </div>
+`;
+      
+    })
   } else {
     campaignInfoDiv.innerHTML = "<p>No campaigns found.</p>";
   }
