@@ -11,7 +11,7 @@ body {
   background-color: #f4f4f4;
   color: #333;
   line-height: 1.6;
-  padding: 20px;
+  padding: 0;
 }
 
 /* מרכז עמוד */
@@ -105,7 +105,7 @@ nav, header, footer {
   align-items: center;
   background-color: #007bff;
   color: white;
-  padding: 15px 30px;
+  padding: 0px 30px 20px 30px ;
   border-radius: 8px;
 }
 
@@ -133,10 +133,11 @@ nav, header, footer {
 
 /* אזור התוכן הראשי */
 .main-content {
-  max-width: 800px;
-  margin: 40px auto;
+  width: 100%;
+  
+  margin: 0 auto ;
   background-color: white;
-  padding: 30px;
+  padding: 40px ;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
   text-align: center;
@@ -147,8 +148,9 @@ nav, header, footer {
   background-color: #f9f9f9;
   border: 1px solid #ccc;
   padding: 20px;
-  border-radius: 10px;
-  margin-bottom: 20px;
+  border-radius: 8px;
+  margin: 20px 0px;
+ width: 100%;
   text-align: left;
   box-shadow: 0 2px 5px rgba(0,0,0,0.05);
   transition: transform 0.2s ease;
@@ -161,6 +163,9 @@ nav, header, footer {
 .campaign-card h3 {
   margin-bottom: 10px;
   color: #007bff;
+}
+#campaign-info{
+  padding: 20px 40px ;
 }
 
 /*עיצוב לססטוס קמפיין מוצג */
@@ -185,7 +190,13 @@ nav, header, footer {
   background-color: #f8d7da;
   color: #721c24;
 }
-
+.status-select {
+  font-weight: bold;
+  padding: 6px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  min-width: 120px;
+}
 /*סיום  טווח עיצוב לססטוס קמפיין */
 
 
