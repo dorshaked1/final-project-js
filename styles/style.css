@@ -377,3 +377,63 @@ nav, header, footer {
 
 
 /*סיום טווח עיצוב email-editor*/
+
+
+
+/*תחילת עיצוב landing-editor*/
+
+
+.landing-page {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 40px;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+}
+
+#landing-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.landing-preview {
+  width: 100%;
+  min-height: 400px;
+  border: 1px solid #ccc;
+  margin-top: 20px;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.landing-preview img {
+  display: block;
+  margin-top: 10px;
+}
+
+.cta-btn {
+  display: inline-block;
+  margin-top: 15px;
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.cta-btn:hover {
+  background-color: #0056b3;
+}
+
+/* Templates */
+.template1 { background-color: #f9f9f9; }
+.template2 { background-color: #e6f7ff; }
+.template3 { background-color: #fff0f5; }
+
+
+
+
+/*סוף טווח עיצוב landing-editor*/

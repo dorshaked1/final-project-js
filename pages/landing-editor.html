@@ -6,7 +6,66 @@
     <title>landing-editor page</title>
     <link rel="stylesheet" href="../styles/style.css">
 </head>
-<body>
-    
+<!-- בדף זה נאפשר ללקוח ליצור סוג של  דף נחיתה לעסק שלו ולבסוף נוכל לשמור את הדף הזה בזיכרון  -->
+    <body class="landing-page">
+
+  <h1>Landing Page Editor</h1>
+  <h2 id="campaign-title"></h2>
+
+  <!-- טופס עריכה -->
+  <form id="landing-form">
+    <label for="template-select">Choose Template:</label>
+    <select id="template-select">
+      <option value="template1">Template 1</option>
+      <option value="template2">Template 2</option>
+      <option value="template3">Template 3</option>
+    </select>
+
+    <label for="landing-title">Main Title:</label>
+    <input type="text" id="landing-title" placeholder="Enter main title" />
+
+    <label for="landing-subtitle">Subtitle:</label>
+    <input type="text" id="landing-subtitle" placeholder="Enter subtitle" />
+
+    <label for="landing-paragraph">Main Paragraph:</label>
+    <textarea id="landing-paragraph" rows="4" placeholder="Enter landing page text"></textarea>
+
+    <label for="image-url">Main Image URL:</label>
+    <input type="text" id="image-url" placeholder="Enter image URL" />
+
+    <label for="cta-text">Call-to-Action Button Text:</label>
+    <input type="text" id="cta-text" placeholder="Sign Up Now!" />
+
+    <label for="bg-color">Background Color:</label>
+    <input type="color" id="bg-color" value="#ffffff" />
+
+    <label for="font-family">Font:</label>
+    <select id="font-family">
+      <option value="Arial">Arial</option>
+      <option value="Tahoma">Tahoma</option>
+      <option value="Georgia">Georgia</option>
+    </select>
+  </form>
+<div id="campaign-assets"></div>
+
+  <!-- תצוגה חיה -->
+  <h2>Live Preview:</h2>
+  <div id="landing-preview" class="landing-preview template1">
+    <h1>Main Title</h1>
+    <h3>Subtitle</h3>
+    <p>Landing page text</p>
+    <img src="" alt="Landing Image" style="max-width:100%; height:auto;">
+    <button class="cta-btn">Sign Up Now!</button>
+  </div>
+
+  <!-- כפתורים -->
+  <button id="save-btn">💾 Save Landing Page</button>
+  <button id="delete-landing-btn" class="btn-secondary">🗑 Delete Landing Page</button>
+
+  <!-- תצוגה של הדף השמור -->
+  <div id="saved-landing-preview"></div>
+
+  <script src="../scripts/landingEditor.js"></script>
+
 </body>
 </html>
