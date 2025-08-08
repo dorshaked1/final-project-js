@@ -304,6 +304,28 @@ nav, header, footer {
 }
 
 
+/* t1 – רקע צבע מלא, טקסט לבן */
+.banner-preview.t1 {
+  background: #0ea5e9;
+  color: #ffffff;
+  border-color: transparent;
+}
+
+/* t2 – רקע לבן עם מסגרת כהה */
+.banner-preview.t2 {
+  background: #ffffff;
+  color: #111827;
+  border: 2px solid #111827;
+}
+
+/* t3 – גרדיאנט צבעוני */
+.banner-preview.t3 {
+  background: linear-gradient(135deg, #7c3aed, #06b6d4);
+  color: #ffffff;
+  border-color: transparent;
+}
+#bg-color:disabled,
+#text-color:disabled { opacity: .6; cursor: not-allowed; }
 /*סיום טווח עיצוב -banner editor*/
 
 
@@ -430,10 +452,51 @@ nav, header, footer {
 
 /* Templates */
 .template1 { background-color: #f9f9f9; }
-.template2 { background-color: #e6f7ff; }
+.template2 { background-color: #fff0e6; }
 .template3 { background-color: #fff0f5; }
 
 
-
-
 /*סוף טווח עיצוב landing-editor*/
+
+
+
+
+
+
+
+
+/*תחילת עיצוב contact-page */
+.contact-page {
+  max-width: 500px;
+  margin: 40px auto;
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+#contact-form {
+  display: flex;
+  flex-direction: column;
+}
+#contact-form label {
+  margin-top: 10px;
+  font-weight: bold;
+}
+#contact-form input {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+#contact-form button {
+  margin-top: 15px;
+  padding: 10px;
+  background: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+#contact-form button:hover {
+  background: #0056b3;
+}
+/*סוף עיצוב contact-page*/

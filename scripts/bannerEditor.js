@@ -7,28 +7,55 @@ if (!currentUser) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  const textInput = document.getElementById("banner-text");
-  const bgColorInput = document.getElementById("bg-color");
+  const textInput      = document.getElementById("banner-text");
+  const bgColorInput   = document.getElementById("bg-color");
   const textColorInput = document.getElementById("text-color");
-  const fontSelect = document.getElementById("font-family");
-  const sizeSelect = document.getElementById("banner-size");
-  const preview = document.getElementById("banner-preview");
+  const fontSelect     = document.getElementById("font-family");
+  const sizeSelect     = document.getElementById("banner-size");     // square | vertical
+  const templateSelect = document.getElementById("banner-template"); // t1 | t2 | t3
+  const useCustom      = document.getElementById("use-custom-colors"); // ← חדש
+  const preview        = document.getElementById("banner-preview");
 
-  function updatePreview() {
-    preview.textContent = textInput.value || "Your text here";
-    preview.style.backgroundColor = bgColorInput.value;
-    preview.style.color = textColorInput.value;
-    preview.style.fontFamily = fontSelect.value;
-    preview.classList.remove("square", "vertical");
-    preview.classList.add(sizeSelect.value);
+  function toggleColorInputs() {
+    if (!useCustom) return;
+    const on = !!useCustom.checked;
+    bgColorInput.disabled = !on;
+    textColorInput.disabled = !on;
+    
   }
 
-  [textInput, bgColorInput, textColorInput, fontSelect, sizeSelect].forEach((el) => {
-    el.addEventListener("input", updatePreview);
-  });
+  function updatePreview() {
+    if (!preview) return;
 
-  updatePreview();
+    // טקסט
+    preview.textContent = textInput.value?.trim() || "Your text here";
 
+    // גודל + תבנית
+    preview.classList.remove("square","vertical","t1","t2","t3");
+    preview.classList.add(sizeSelect.value || "square");
+    preview.classList.add((templateSelect?.value || "t1").trim());
+
+    // אפס inline כדי שהתבנית תשפיע כברירת מחדל
+    preview.style.backgroundColor = "";
+    preview.style.color = "";
+
+    // צבעים מותאמים אישית – רק אם מסומן
+    if (useCustom?.checked) {
+      if (bgColorInput.value)   preview.style.backgroundColor = bgColorInput.value;
+      if (textColorInput.value) preview.style.color = textColorInput.value;
+    }
+
+    // פונט תמיד אפשר לעדכן
+    preview.style.fontFamily = fontSelect.value || "Arial";
+  }
+
+  [textInput, bgColorInput, textColorInput, fontSelect, sizeSelect, templateSelect, useCustom]
+    .forEach(el => el && el.addEventListener("input", () => {
+      if (el === useCustom) toggleColorInputs();
+      updatePreview();
+    }));
+
+  // --- Load campaign ---
   const params = new URLSearchParams(window.location.search);
   const campaignId = parseInt(params.get("id"));
   const campaigns = JSON.parse(localStorage.getItem("campaigns")) || [];
@@ -40,58 +67,88 @@ document.addEventListener("DOMContentLoaded", () => {
     return;
   }
 
-  // הצגת שם הקמפיין
+  // כותרת דף
   const campaignTitle = document.getElementById("campaign-title");
-  campaignTitle.textContent = `Editing: ${campaign.name}`;
+  if (campaignTitle) campaignTitle.textContent = `Editing: ${campaign.name}`;
 
-  // אם יש באנר שמור – נטען אותו
+  // טען באנר קיים
   if (campaign.banner) {
-    const bannerData = campaign.banner;
-    textInput.value = bannerData.text || "";
-    bgColorInput.value = bannerData.backgroundColor || "#ffffff";
-    textColorInput.value = bannerData.textColor || "#000000";
-    fontSelect.value = bannerData.font || "Arial";
-    sizeSelect.value = bannerData.size || "square";
-    updatePreview();
+    const b = campaign.banner;
+    textInput.value      = b.text || "";
+    fontSelect.value     = b.font || "Arial";
+    sizeSelect.value     = b.size || "square";
+    if (templateSelect) templateSelect.value = b.template || "t1";
 
-    // נציג את הבאנר השמור
-    const previewCopy = preview.cloneNode(true);
-    const savedContainer = document.getElementById("saved-banner-preview");
-    savedContainer.innerHTML = "<h3>Saved Banner:</h3>";
-    savedContainer.appendChild(previewCopy);
+    // אם נשמרו צבעים – הפעל custom
+    const hasCustom = !!(b.backgroundColor || b.textColor);
+    if (useCustom) useCustom.checked = hasCustom;
+    bgColorInput.value   = hasCustom ? (b.backgroundColor || "#ffffff") : "#ffffff";
+    textColorInput.value = hasCustom ? (b.textColor || "#000000")       : "#000000";
+  } else {
+    if (templateSelect) templateSelect.value = "t1";
+    if (useCustom) useCustom.checked = false;
+    bgColorInput.value   = "#ffffff";
+    textColorInput.value = "#000000";
   }
 
-  // כפתור שמירה
+  toggleColorInputs();
+  updatePreview();
+
+  function renderSavedSnapshot() {
+    const savedContainer = document.getElementById("saved-banner-preview");
+    if (!savedContainer) return;
+    savedContainer.innerHTML = "";
+
+    if (!campaign.banner) return;
+
+    const b = campaign.banner;
+    const div = document.createElement("div");
+    div.className = `banner-preview ${b.size || "square"} ${b.template || "t1"}`;
+    div.textContent = b.text || "Your text here";
+
+    // אם שמרנו Custom – ניישם אותם על ה־snapshot
+    if (b.backgroundColor) div.style.backgroundColor = b.backgroundColor;
+    if (b.textColor)       div.style.color = b.textColor;
+    if (b.font)            div.style.fontFamily = b.font;
+
+    const meta = document.createElement("div");
+    meta.style.marginTop = "8px";
+    meta.style.opacity = "0.7";
+    meta.style.fontSize = ".85rem";
+    meta.textContent = `Last saved: ${b.updatedAt || "-"}`;
+
+    savedContainer.appendChild(div);
+    savedContainer.appendChild(meta);
+  }
+  renderSavedSnapshot();
+
+  // Save
   const saveBtn = document.getElementById("save-btn");
   saveBtn.addEventListener("click", () => {
     campaign.banner = {
       text: textInput.value,
-      backgroundColor: bgColorInput.value,
-      textColor: textColorInput.value,
       font: fontSelect.value,
-      size: sizeSelect.value
+      size: sizeSelect.value,
+      template: (templateSelect?.value || "t1").trim(),
+      // שומרים צבעים רק אם מסומן custom
+      backgroundColor: useCustom?.checked ? bgColorInput.value : "",
+      textColor:       useCustom?.checked ? textColorInput.value : "",
+      updatedAt: new Date().toLocaleString(),
     };
 
     localStorage.setItem("campaigns", JSON.stringify(campaigns));
     alert("Banner saved successfully!");
-
-    // עדכון תצוגת הבאנר השמור
-    const previewCopy = preview.cloneNode(true);
-    const savedContainer = document.getElementById("saved-banner-preview");
-    savedContainer.innerHTML = "<h3>Saved Banner:</h3>";
-    savedContainer.appendChild(previewCopy);
+    renderSavedSnapshot();
   });
 
-  // כפתור מחיקה
+  // Delete
   const deleteBtn = document.getElementById("delete-banner-btn");
   deleteBtn.addEventListener("click", () => {
     if (!campaign.banner) {
       alert("No banner to delete.");
       return;
     }
-
-    const confirmDelete = confirm("Are you sure you want to delete the banner?");
-    if (!confirmDelete) return;
+    if (!confirm("Are you sure you want to delete the banner?")) return;
 
     delete campaign.banner;
     localStorage.setItem("campaigns", JSON.stringify(campaigns));
