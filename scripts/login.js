@@ -26,7 +26,16 @@ loginForm.addEventListener("submit", function (e) {
 
   if (foundUser) {
     errorMsg.textContent = "";
-    window.location.href = "dashboard.html";
+
+  // שמירת המשתמש הנוכחי
+  localStorage.setItem("currentUser", username);
+
+  // בדיקת הפניה שמורה
+  const redirectUrl = localStorage.getItem("redirectAfterLogin") || "dashboard.html";
+  localStorage.removeItem("redirectAfterLogin");
+
+  // הפניה לעמוד המבוקש
+  window.location.href = redirectUrl;
   } else {
     errorMsg.textContent = "Incorrect username or password.";
   }

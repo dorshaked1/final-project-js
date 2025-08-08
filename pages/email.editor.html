@@ -1,11 +1,95 @@
+<!-- למה אנחנו צריכים את email-editor בפרויקט
+בפרויקט  שלי כל קמפיין מורכב מכמה חלקים גרפיים ותוכן שיווקי:
+
+Banner – המודעה הויזואלית הקטנה
+
+Email – מייל שיווקי שישלח ללקוחות
+
+Landing Page – עמוד נחיתה שאליו הלקוח מגיע
+
+email-editor הוא הכלי הפנימי שמאפשר לך לעצב ולשמור את חלק המייל עבור קמפיין מסוים.
+ 
+:המטרות שלו בפועל 
+
+בחירת תבנית מייל מתוך שלוש אפשרויות עיצוב (רוחב קבוע 650px)
+
+התאמת תוכן – כותרות, פסקאות, תמונות, צבעים, גופנים
+
+תצוגה חיה – לראות את השינויים בזמן אמת
+
+שמירה ב־localStorage כחלק מהקמפיין
+
+טעינה מחדש של המייל אם חוזרים לערוך את אותו קמפיין
+
+מחיקה של המייל מהקמפיין במידת הצורך
+
+
+-->
+
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>email-editor page</title>
+    <link rel="stylesheet" href="../styles/style.css">
 </head>
-<body>
-    
+    <body class="email-page">
+  <h1>Email Editor</h1>
+
+  <!-- שם הקמפיין -->
+  <h2 id="campaign-title"></h2>
+
+  <!-- טופס בחירת תבנית ותוכן -->
+  <form id="email-form">
+    <label for="template-select">Choose Template:</label>
+    <select id="template-select">
+      <option value="template1">Template 1</option>
+      <option value="template2">Template 2</option>
+      <option value="template3">Template 3</option>
+    </select>
+
+    <label for="email-title">Email Title:</label>
+    <input type="text" id="email-title" placeholder="Enter email title" />
+
+    <label for="email-paragraph">Paragraph:</label>
+    <textarea id="email-paragraph" rows="4" placeholder="Enter email paragraph"></textarea>
+
+    <label for="image-url">Image URL:</label>
+    <input type="text" id="image-url" placeholder="Enter image URL" />
+
+    <label for="bg-color">Background Color:</label>
+    <input type="color" id="bg-color" value="#ffffff" />
+
+    <label for="font-family">Font:</label>
+    <select id="font-family">
+      <option value="Arial">Arial</option>
+      <option value="Tahoma">Tahoma</option>
+      <option value="Georgia">Georgia</option>
+    </select>
+  </form>
+
+  <!-- תצוגה חיה -->
+  <h2>Live Preview:</h2>
+  <div id="email-preview" class="email-preview template1">
+    <h1>Email Title</h1>
+    <p>Paragraph text</p>
+    <img src="" alt="Email Image" style="max-width:100%; height:auto;">
+  </div>
+
+  <!-- כפתורים -->
+  <button id="save-btn">💾 Save Email</button>
+  <button id="delete-email-btn" class="btn-secondary">🗑 Delete Email</button>
+
+  <!-- תצוגה של המייל השמור -->
+  <div id="saved-email-preview"></div>
+
+  <script src="../scripts/emailEditor.js"></script>
+
 </body>
 </html>

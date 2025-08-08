@@ -1,4 +1,23 @@
+<!-- מה הוא באנר? 
+ סוג של מודעה פרסומית ויזואלית 
+ אצלי בפרוקיט היא כוללת :
+טקסט שיווקי
+צבע רקע 
+צבע טקסט 
+גופן 
+גודל (רוחב ואורך )
+
+
+
+
+
+כלומר  כאן הbanner-deitor 
+אחראי על החלק הגרפי של הקמפיין 
+
+-->
+
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -6,7 +25,51 @@
     <title>banner-editor page</title>
     <link rel="stylesheet" href="../styles/style.css">
 </head>
-<body>
-    
+
+<body class="banner-page">
+  <h1>Banner Editor</h1>
+
+  <!-- הצגת שם הקמפיין -->
+  <h2 id="campaign-title"></h2>
+
+  <!-- טופס עריכת באנר -->
+  <form id="banner-form">
+    <label for="banner-size">Banner Size:</label>
+    <select id="banner-size">
+      <option value="square">250x250</option>
+      <option value="vertical">300x600</option>
+    </select>
+
+    <label for="banner-text">Banner Text:</label>
+    <input type="text" id="banner-text" placeholder="Your text here" />
+
+    <label for="bg-color">Background Color:</label>
+    <input type="color" id="bg-color" value="#ffffff" />
+
+    <label for="text-color">Text Color:</label>
+    <input type="color" id="text-color" value="#000000" />
+
+    <label for="font-family">Font:</label>
+    <select id="font-family">
+      <option value="Arial">Arial</option>
+      <option value="Tahoma">Tahoma</option>
+      <option value="Georgia">Georgia</option>
+    </select>
+  </form>
+
+  <!-- תצוגה חיה -->
+  <h2>Live Preview:</h2>
+  <div id="banner-preview" class="banner-preview square">
+    Your text here
+  </div>
+
+  <!-- כפתורי פעולה -->
+  <button id="save-btn">💾 Save Banner</button>
+  <button id="delete-banner-btn" class="btn-secondary">🗑 Delete Banner</button>
+
+  <!-- תצוגת באנר שמור -->
+  <div id="saved-banner-preview"></div>
+
+  <script src="../scripts/bannerEditor.js"></script>
 </body>
 </html>

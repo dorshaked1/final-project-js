@@ -14,6 +14,9 @@ body {
   padding: 0;
 }
 
+
+
+/*עיצוב לדף -login */
 /* מרכז עמוד */
 .container, .login-container {
   max-width: 500px;
@@ -93,7 +96,7 @@ nav, header, footer {
   background-color: #545b62;
 }
 
-
+/*סיום טווח עיצוב דף login 
 
 
 
@@ -142,7 +145,7 @@ nav, header, footer {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
   text-align: center;
 }
-/*סיום עיצוב לדף הבית*/
+
 /* עיצוב לכרטיסי קמפיין-דף הבית*/
 .campaign-card {
   background-color: #f9f9f9;
@@ -199,9 +202,178 @@ nav, header, footer {
 }
 /*סיום  טווח עיצוב לססטוס קמפיין */
 
+/*עיצוב כפתורי קישורים בכל כרטיסיה*/
+.editor-buttons {
+
+  margin-top: 10px;
+  display: flex;
+  gap: 10px;
+}
+
+.editor-buttons button {
+  padding: 8px 12px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.editor-buttons button:hover {
+  background-color: #45a049;
+}
+
+
+/*סוף טווח עציצוב כפתורי קישורים בכל כרטיסיה קמפיין */
+
+/*עיצוב כפתור מחיקה לכל קמפיין*/
+
+ .editor-buttons .delete-btn {
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 12px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.editor-buttons .delete-btn:hover {
+  background-color: #c0392b;
+}
+
+/*   סוף טווח עיצוב כפתור מחיקה לכל קמפיין  * /
 
 
 /*סיום טווח לכרטיסי קמפיין */
 
+/*סיום עיצוב לדף הבית*/
+
+/* === עיצוב לדף banner-editor === */
+
+.banner-page {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 40px;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+}
+
+#banner-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+#banner-form label {
+  font-weight: bold;
+}
+
+#banner-form input,
+#banner-form select {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.banner-preview {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  border: 2px solid #999;
+  border-radius: 10px;
+  background-color: #ffffff;
+  color: #000000;
+  margin-top: 20px;
+  transition: all 0.3s ease;
+}
+
+.banner-preview.square {
+  width: 250px;
+  height: 250px;
+}
+
+.banner-preview.vertical {
+  width: 300px;
+  height: 600px;
+}
 
 
+/*סיום טווח עיצוב -banner editor*/
+
+
+
+/*תחילת טווח עיצוב email-editor*/
+
+.email-page {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 40px;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+}
+
+#email-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.email-preview {
+  width: 650px;
+  min-height: 300px;
+  border: 1px solid #ccc;
+  margin-top: 20px;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.email-preview h1 {
+  margin-bottom: 10px;
+}
+
+.email-preview p {
+  margin-bottom: 10px;
+}
+
+.email-preview img {
+  display: block;
+  margin-top: 10px;
+}
+
+/* Templates for preview */
+/* תבנית 1 - נקי ופשוט */
+.template1 {
+  background-color: #f9f9f9;
+  border: 3px solid #ccc;
+  font-family: Arial, sans-serif;
+  color: #333;
+  padding: 20px;
+}
+
+/* תבנית 2 - כחול מודרני */
+.template2 {
+  background-color: #e6f7ff;
+  border: 3px solid #007bff;
+  font-family: Tahoma, sans-serif;
+  color: #004085;
+  padding: 20px;
+}
+
+/* תבנית 3 - ורוד שיווקי */
+.template3 {
+  background-color: #fff0f5;
+  border: 3px solid #e83e8c;
+  font-family: Georgia, serif;
+  color: #8b004b;
+  padding: 20px;
+}
+
+
+/*סיום טווח עיצוב email-editor*/
