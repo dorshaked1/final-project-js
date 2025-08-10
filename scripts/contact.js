@@ -1,8 +1,11 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const params = new URLSearchParams(window.location.search);
-  const campaignId = parseInt(params.get("id"));
-  const campaigns = JSON.parse(localStorage.getItem("campaigns")) || [];
-  const campaign = campaigns[campaignId];
+  
+  const params = new URLSearchParams(window.location.search);//ניצור אוביקט נוח לקריאת פרמטרים מurl.
+
+  const campaignId = parseInt(params.get("id"));//מוצא את הפרמטר id  , והופך אותו למספר שלם ,זהו האינדקס של הקמפיין במערך 
+  
+  const campaigns = JSON.parse(localStorage.getItem("campaigns")) || [];//שולף את כל הקמפיינים מlocal 
+  const campaign = campaigns[campaignId];//בוחר את הקמפיין הספציפי לפי id שקיבלנו 
 
   if (!campaign) {
     alert("Campaign not found.");
@@ -10,11 +13,11 @@ document.addEventListener("DOMContentLoaded", () => {
     return;
   }
 
-  const form = document.getElementById("contact-form");
-  if (!form) return;
+  const form = document.getElementById("contact-form");//יוצר הפנייה לדף יצירת הקשר
+  if (!form) return;//אם אין טופס -לא מתרחש כלום -יציאה מוקדמת 
 
   form.addEventListener("submit", (e) => {
-    e.preventDefault();
+    e.preventDefault();//מנסה למנוע רענון עמוד 
 
     const name = (form.name?.value || "").trim();
     const email = (form.email?.value || "").trim();
@@ -37,7 +40,9 @@ document.addEventListener("DOMContentLoaded", () => {
     leads.push({ name, email, phone, createdAt: Date.now(), source: "contact" });
     localStorage.setItem("leads", JSON.stringify(leads));
 
-    alert("הפרטים נשמרו בהצלחה!");
+
+
+    alert("lead saved")
     form.reset();
     window.location.href = "../pages/dashboard.html";
   });
