@@ -11,27 +11,34 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   const form = document.getElementById("contact-form");
+  if (!form) return;
+
   form.addEventListener("submit", (e) => {
     e.preventDefault();
 
-    const name = document.getElementById("name").value.trim();
-    const email = document.getElementById("email").value.trim();
+    const name = (form.name?.value || "").trim();
+    const email = (form.email?.value || "").trim();
+    const phone = (form.phone?.value || "").trim();
 
     if (!name || !email) {
-      alert("Please fill in all fields.");
+      alert("נא למלא שם ואימייל");
       return;
     }
 
-    // יצירת מערך לידים אם אין
+    // שמירה במערך הלידים של הקמפיין
     if (!campaign.leads) {
       campaign.leads = [];
     }
-
-    campaign.leads.push({ name, email, date: new Date().toLocaleString() });
-
+    campaign.leads.push({ name, email, phone, date: new Date().toLocaleString() });
     localStorage.setItem("campaigns", JSON.stringify(campaigns));
 
-    alert("Your details have been submitted. Thank you!");
+    // שמירה גם במערך לידים כללי
+    const leads = JSON.parse(localStorage.getItem("leads") || "[]");
+    leads.push({ name, email, phone, createdAt: Date.now(), source: "contact" });
+    localStorage.setItem("leads", JSON.stringify(leads));
+
+    alert("הפרטים נשמרו בהצלחה!");
     form.reset();
+    window.location.href = "../pages/dashboard.html";
   });
 });

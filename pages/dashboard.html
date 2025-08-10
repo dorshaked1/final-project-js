@@ -31,6 +31,35 @@
       <button id="add-campaign">➕ Add New Campaign</button>
 
     </section>
+    
+
+<section id="leads-tools" style="margin: 16px 0;">
+  <button id="btn-show-leads">Show leads</button>
+  <button id="btn-hide-leads" style="display:none;">Hide</button>
+</section>
+
+<section id="leads-panel" style="display:none; margin-top:12px;">
+  <div id="leads-empty" style="padding:8px; border:1px solid #eee; border-radius:8px; background:#fafafa;">
+    No leads yet.
+  </div>
+  <div class="table-wrap" style="overflow:auto; max-height:420px; border:1px solid #eee; border-radius:8px;">
+    <table id="leads-table" style="width:100%; border-collapse:collapse;">
+      <thead>
+        <tr>
+          <th style="text-align:left; padding:8px; border-bottom:1px solid #eee;">Name</th>
+          <th style="text-align:left; padding:8px; border-bottom:1px solid #eee;">Email</th>
+          <th style="text-align:left; padding:8px; border-bottom:1px solid #eee;">Phone</th>
+          <th style="text-align:left; padding:8px; border-bottom:1px solid #eee;">Source</th>
+          <th style="text-align:left; padding:8px; border-bottom:1px solid #eee;">Created</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+</section>
+
+
+
   </main>
 
   <script src="../scripts/dashboard.js"></script>
