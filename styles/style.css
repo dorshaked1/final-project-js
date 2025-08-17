@@ -12,6 +12,7 @@ body {
   color: #333;
   line-height: 1.6;
   padding: 0;
+  overflow-x: hidden;
 }
 
 
@@ -458,6 +459,61 @@ nav, header, footer {
 
 /*סוף טווח עיצוב landing-editor*/
 
+/* רספונסיביות לכל הדפים במסך קטן */
+@media screen and (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+  }
+
+  .main-content,
+  .banner-page,
+  .email-page,
+  .landing-page,
+  .contact-page {
+    padding: 20px;
+    box-sizing: border-box;
+  }
+
+  .campaign-card {
+    margin: 10px 0;
+    width: 100%;
+  }
+
+  .editor-buttons {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .email-preview,
+  .landing-preview {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .banner-preview.square,
+  .banner-preview.vertical {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .cta-btn {
+    width: 100%;
+    box-sizing: border-box;
+    text-align: center;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="password"],
+  input[type="number"],
+  textarea,
+  select {
+    width: 100%;
+    box-sizing: border-box;
+  }
+}
 
 
 
