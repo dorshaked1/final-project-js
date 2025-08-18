@@ -21,7 +21,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const on = !!useCustom.checked;
     bgColorInput.disabled = !on;
     textColorInput.disabled = !on;
-    
   }
 
   function updatePreview() {
@@ -31,7 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
     preview.textContent = textInput.value?.trim() || "Your text here";
 
     // גודל + תבנית
-    preview.classList.remove("square","vertical","t1","t2","t3");
+    preview.classList.remove("square", "vertical", "t1", "t2", "t3");
     preview.classList.add(sizeSelect.value || "square");
     preview.classList.add((templateSelect?.value || "t1").trim());
 
@@ -58,7 +57,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // --- Load campaign ---
   const params = new URLSearchParams(window.location.search);
   const campaignId = parseInt(params.get("id"));
-  const campaigns = JSON.parse(localStorage.getItem("campaigns")) || [];
+  const campaigns = JSON.parse(localStorage.getItem(`campaigns_${currentUser}`)) || [];
   const campaign = campaigns[campaignId];
 
   if (!campaign) {
@@ -136,7 +135,7 @@ document.addEventListener("DOMContentLoaded", () => {
       updatedAt: new Date().toLocaleString(),
     };
 
-    localStorage.setItem("campaigns", JSON.stringify(campaigns));
+    localStorage.setItem(`campaigns_${currentUser}`, JSON.stringify(campaigns));
     alert("Banner saved successfully!");
     renderSavedSnapshot();
   });
@@ -151,7 +150,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!confirm("Are you sure you want to delete the banner?")) return;
 
     delete campaign.banner;
-    localStorage.setItem("campaigns", JSON.stringify(campaigns));
+    localStorage.setItem(`campaigns_${currentUser}`, JSON.stringify(campaigns));
     alert("Banner deleted.");
     location.reload();
   });

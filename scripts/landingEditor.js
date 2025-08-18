@@ -13,13 +13,13 @@ function getParam(name) {
 }
 function getCampaigns() {
   try {
-    return JSON.parse(localStorage.getItem("campaigns") || "[]");
+    return JSON.parse(localStorage.getItem(`campaigns_${currentUser}`) || "[]");
   } catch {
     return [];
   }
 }
 function saveCampaigns(campaigns) {
-  localStorage.setItem("campaigns", JSON.stringify(campaigns));
+  localStorage.setItem(`campaigns_${currentUser}`, JSON.stringify(campaigns));
 }
 function clampText(str, max = 120) {
   if (!str) return "";
@@ -101,11 +101,9 @@ document.addEventListener("DOMContentLoaded", () => {
     if (previewBtn) previewBtn.textContent = ctaTextInput?.value || "Sign Up Now!";
 
     // Contact button (נוסיף/נסיר לפי הצ'קבוקס)
-    // מחיקה של כפתור ישן אם קיים
     const oldContact = preview.querySelector(".contact-btn");
     if (oldContact) oldContact.remove();
 
-    // יצירה מחודשת אם מסומן
     if (contactBtnCheckbox?.checked && hasValidId) {
       const a = document.createElement("a");
       a.className = "cta-btn contact-btn";
@@ -212,7 +210,6 @@ document.addEventListener("DOMContentLoaded", () => {
       saveCampaigns(campaigns);
       alert("Landing page saved.");
       renderSavedSnapshot();
-      // window.location.href = `dashboard.html`;
     });
   }
 

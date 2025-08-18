@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const params = new URLSearchParams(window.location.search);
   const campaignId = parseInt(params.get("id"));
-  const campaigns = JSON.parse(localStorage.getItem("campaigns")) || [];
+  const campaigns = JSON.parse(localStorage.getItem(`campaigns_${currentUser}`)) || [];
   const campaign = campaigns[campaignId];
 
   if (!campaign) {
@@ -65,7 +65,6 @@ document.addEventListener("DOMContentLoaded", () => {
     fontSelect.value = emailData.font || "Arial";
     updatePreview();
 
-    // הצגת המייל השמור
     const savedContainer = document.getElementById("saved-email-preview");
     savedContainer.innerHTML = "<h3>Saved Email:</h3>" + preview.outerHTML;
   }
@@ -81,10 +80,9 @@ document.addEventListener("DOMContentLoaded", () => {
       font: fontSelect.value
     };
 
-    localStorage.setItem("campaigns", JSON.stringify(campaigns));
+    localStorage.setItem(`campaigns_${currentUser}`, JSON.stringify(campaigns));
     alert("Email saved successfully!");
 
-    // עדכון תצוגה של המייל השמור
     const savedContainer = document.getElementById("saved-email-preview");
     savedContainer.innerHTML = "<h3>Saved Email:</h3>" + preview.outerHTML;
   });
@@ -99,7 +97,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!confirm("Are you sure you want to delete the email?")) return;
 
     delete campaign.email;
-    localStorage.setItem("campaigns", JSON.stringify(campaigns));
+    localStorage.setItem(`campaigns_${currentUser}`, JSON.stringify(campaigns));
     alert("Email deleted.");
     location.reload();
   });

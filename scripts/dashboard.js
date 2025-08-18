@@ -12,9 +12,16 @@ if (!currentUser) {
 document.addEventListener("DOMContentLoaded", function () {
   const campaignInfoDiv = document.getElementById("campaign-info");
   const addBtn = document.getElementById("add-campaign");
+const logoutBtn = document.getElementById("logout-L");
+if (logoutBtn) {
+  logoutBtn.addEventListener("click", () => {
+    localStorage.removeItem("currentUser"); // ניתוק המשתמש
+    location.href = "login.html"; // הפניה חזרה לעמוד התחברות
+  });
+}
 
   // שליפת כל הקמפיינים
-  const stored = localStorage.getItem("campaigns");
+const stored = localStorage.getItem(`campaigns_${currentUser}`);
   const campaigns = stored ? JSON.parse(stored) : [];
 
   // הצגת קמפיינים קיימים
@@ -44,9 +51,7 @@ document.addEventListener("DOMContentLoaded", function () {
         </div>
       `;
     });
-
     campaignInfoDiv.innerHTML = html;
-
     // האזנה למחיקת קמפיינים (הצלה של אירועים)
     campaignInfoDiv.addEventListener("click", function (e) {
       const btn = e.target.closest(".delete-btn");
@@ -69,7 +74,8 @@ document.addEventListener("DOMContentLoaded", function () {
         const newStatus = this.value;
 
         campaigns[index].status = newStatus;
-        localStorage.setItem("campaigns", JSON.stringify(campaigns));
+        localStorage.setItem(`campaigns_${currentUser}`, JSON.stringify(campaigns));
+
 
         this.classList.remove("status-draft", "status-active", "status-expired");
         this.classList.add(`status-${newStatus.toLowerCase()}`);
@@ -94,7 +100,7 @@ document.addEventListener("DOMContentLoaded", function () {
       };
 
       campaigns.push(newCampaign);
-      localStorage.setItem("campaigns", JSON.stringify(campaigns));
+      localStorage.setItem(`campaigns_${currentUser}`, JSON.stringify(campaigns));
       location.reload();
     });
   }

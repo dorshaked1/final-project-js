@@ -150,6 +150,24 @@ nav, header, footer {
 .nav-links li a:hover {
   color: #ffdd57;
 }
+#logout-L {
+  /* position: fixed; */
+  top: 7px;
+  right: 7px;
+  padding: 10px 14px;
+  background-color: #e60000;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 1000;
+max-width: 100%;
+}
+#logout-btn:hover {
+  background-color: #003acc;
+}
+
 
 /* אזור התוכן הראשי */
 .main-content {
@@ -529,6 +547,12 @@ nav, header, footer {
     width: 100%;
     box-sizing: border-box;
   }
+  #logout-L {
+  top: 10px;
+  right: 10px;
+  padding: 8px 12px;
+  font-size: 14px;
+}
 }
 
 
