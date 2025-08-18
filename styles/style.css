@@ -490,16 +490,64 @@ max-width: 100%;
 .template2 { background-color: #fff0e6; }
 .template3 { background-color: #fff0f5; }
 
-
 /*סוף טווח עיצוב landing-editor*/
+
+/*תחילת עיצוב contact-page */
+.contact-page {
+  max-width: 500px;
+  margin: 40px auto;
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+#contact-form {
+  display: flex;
+  flex-direction: column;
+}
+#contact-form label {
+  margin-top: 10px;
+  font-weight: bold;
+}
+#contact-form input {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+#contact-form button {
+  margin-top: 15px;
+  padding: 10px;
+  background: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+#contact-form button:hover {
+  background: #0056b3;
+}
+/*סוף עיצוב contact-page*/
+
+
 
 /* רספונסיביות לכל הדפים במסך קטן */
 @media screen and (max-width: 768px) {
-  .navbar {
+.navbar {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .nav-links {
     flex-direction: column;
     gap: 10px;
+    width: 100%;
+  }
+
+  .nav-links li {
+    width: 100%;
     text-align: center;
   }
+
 
   .main-content,
   .banner-page,
@@ -554,45 +602,3 @@ max-width: 100%;
   font-size: 14px;
 }
 }
-
-
-
-
-
-
-
-/*תחילת עיצוב contact-page */
-.contact-page {
-  max-width: 500px;
-  margin: 40px auto;
-  background: #fff;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
-}
-#contact-form {
-  display: flex;
-  flex-direction: column;
-}
-#contact-form label {
-  margin-top: 10px;
-  font-weight: bold;
-}
-#contact-form input {
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-#contact-form button {
-  margin-top: 15px;
-  padding: 10px;
-  background: #007bff;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-#contact-form button:hover {
-  background: #0056b3;
-}
-/*סוף עיצוב contact-page*/
