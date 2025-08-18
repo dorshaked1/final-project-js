@@ -1,0 +1,11 @@
+document.addEventListener("DOMContentLoaded", () => {
+  const isDashboard = location.pathname.includes("dashboard.html");
+  const meta = document.querySelector('meta[name="hide-back-dashboard"]');
+  if (isDashboard || (meta && meta.content === "true")) return;
+
+  const btn = document.createElement("a");
+  btn.className = "back-dashboard-btn";
+  btn.href = "../pages/dashboard.html";
+  btn.textContent = "← Back to Dashboard";
+  document.body.appendChild(btn);
+});

@@ -14,7 +14,23 @@ body {
   padding: 0;
   overflow-x: hidden;
 }
-
+/*עיצוב כפתור זרה לדף הבית לכלל העמודים למעט דף הבית עצמו */
+.back-dashboard-btn {
+  position: fixed;
+  top: 14px;
+  left: 14px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  background: #111;
+  color: #fff;
+  text-decoration: none;
+  font-size: 14px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, .15);
+  z-index: 1000;
+}
+.back-dashboard-btn:hover {
+  opacity: 0.9;
+}
 
 
 /*עיצוב לדף -login */
